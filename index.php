@@ -80,9 +80,9 @@
 				{	
 					$query_num_row = mysql_num_rows($query_run);
 					if($query_num_row != NULL)
-					{
+					{	
 						while ($query_row = mysql_fetch_assoc($query_run)) {
-							echo '<img src="'.$query_row['imgLink'].'" class="img-thumbnail" height="150px" width="150px" style="margin-left:17px; margin-top:10px;">';
+							echo '<img src="'.$query_row['imgLink'].'" data-toggle="modal" data-target="#myModal" id="image" class="img-thumbnail" style="margin-left:17px; margin-top:10px; width:150px; height:120px;">';
 						}
 					}
 					else
@@ -118,7 +118,28 @@
 			</form>
 		</div>
 
+		<!-- Modal -->
+		
+		<div class="modal fade" tabindex="-1" role="dialog" id="myModal" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  		<div class="modal-dialog modal-lg">
+			    <div class="modal-content">
+			    	<div class="modal-body">
+			      		<img class="img-responsive" id="img_dest">
+			      	</div>
+			    </div>
+		 	</div>
+		</div>
+
       <script type="text/javascript" src="js/jquery.min.js"></script>
       <script type="text/javascript" src="js/bootstrap.min.js"></script>
+      <script type="text/javascript">
+      	$(document).ready(function(){
+      		$('img').click(function(){
+      			var img_source = $(this).attr('src');
+      			$('#img_dest').attr('src',img_source);
+      		});
+      	});
+      </script>
   </body>
 </html>
+
